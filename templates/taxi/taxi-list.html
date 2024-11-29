@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Taxi Management</h1>
+
+    <form method="get">
+        <label for="taxi_name">Create New Taxi</label>
+        <input type="text" id="taxi_name" name="taxi_name" placeholder="Taxi Name" required>
+
+        <label for="license_plate">License Plate</label>
+        <input type="number" id="license_plate" name="license_plate" placeholder="License Plate" required>
+
+        <label for="driver_name">Driver Name</label>
+        <input type="text" id="driver_name" name="driver_name" placeholder="Driver Name" required>
+
+        <label for="passenger_capacity">Passenger Capacity</label>
+        <input type="number" id="passenger_capacity" name="passenger_capacity" required>
+
+        <label for="car_model">Car Model</label>
+        <input type="text" id="car_model" name="car_model" placeholder="Car Model" required>
+
+        <label for="status">Status</label>
+        <select id="status" name="status" required>
+            <option value="">Select Status</option>
+            <option value="Available">Available</option>
+            <option value="Busy">Busy</option>
+            <option value="Under Maintenance">Under Maintenance</option>
+        </select>
+
+        <button type="submit">Create Taxi</button>
+
+
+     <table>
+        <thead>
+            <tr>
+                <th>Taxi Name</th>
+                <th>Picense Plate</th>
+                <th>Driver Name</th>
+                <th>Passenger Capacity</th>
+                <th>Car Model</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for taksi in taxi %}
+            <tr>
+                <td>{{ taksi.id }}</td>
+                <td>{{ taksi.taxi_name }}</td>
+                <td>{{ taksi.license_plate }}</td>
+                <td>{{ taksi.driver_name }}</td>
+                <td>{{ taksi.passenger_capacity }}</td>
+                <td>{{ taksi.car_model }}</td>
+                <td>{{ taksi.status }}</td>
+            </tr>
+                {% empty %}
+            <tr>
+                <td colspan="5">No Taxi added.</td>
+            </tr>
+                {% endfor %}
+
+
+        </tbody>
+    </table>
+
+</body>
+</html>
